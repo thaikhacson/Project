@@ -1,4 +1,6 @@
 ﻿  main.c
+  member.c
+  Generating Code...
 D:\Desktop\Embedded Interview\Project\Resident Manager\Resident Manager\main.c(102,19): warning C4477: 'scanf' : format string '%s' requires an argument of type 'char *', but variadic argument 1 has type 'const char **'
 D:\Desktop\Embedded Interview\Project\Resident Manager\Resident Manager\main.c(103,54): warning C4047: 'function': 'const char *' differs in levels of indirection from 'const char *[10]'
 D:\Desktop\Embedded Interview\Project\Resident Manager\Resident Manager\main.c(103,54): warning C4024: 'find_by_uid': different types for formal and actual parameter 2
@@ -9,4 +11,11 @@ D:\Desktop\Embedded Interview\Project\Resident Manager\Resident Manager\main.c(1
 D:\Desktop\Embedded Interview\Project\Resident Manager\Resident Manager\main.c(118,64): warning C4024: 'find_by_license_plate': different types for formal and actual parameter 2
 D:\Desktop\Embedded Interview\Project\Resident Manager\Resident Manager\main.c(120,24): warning C4477: 'printf' : format string '%s' requires an argument of type 'char *', but variadic argument 1 has type 'const char **'
 D:\Desktop\Embedded Interview\Project\Resident Manager\Resident Manager\main.c(125,24): warning C4477: 'printf' : format string '%s' requires an argument of type 'char *', but variadic argument 1 has type 'const char **'
+D:\Desktop\Embedded Interview\Project\Resident Manager\Resident Manager\member.c(40,29): warning C4028: formal parameter 1 different from declaration
+D:\Desktop\Embedded Interview\Project\Resident Manager\Resident Manager\member.c(46,9): warning C4013: 'strcmp' undefined; assuming extern returning int
+D:\Desktop\Embedded Interview\Project\Resident Manager\Resident Manager\member.c(69,70): warning C4028: formal parameter 3 different from declaration
+D:\Desktop\Embedded Interview\Project\Resident Manager\Resident Manager\member.c(73,9): warning C4013: 'strcpy' undefined; assuming extern returning int
+  manager.c
+D:\Desktop\Embedded Interview\Project\Resident Manager\Resident Manager\manager.c(39,12): warning C4047: 'function': 'TreeNode *' differs in levels of indirection from 'TreeNode **'
+D:\Desktop\Embedded Interview\Project\Resident Manager\Resident Manager\manager.c(39,12): warning C4024: 'insert': different types for formal and actual parameter 1
   Resident Manager.vcxproj -> D:\Desktop\Embedded Interview\Project\Resident Manager\x64\Debug\Resident Manager.exe
