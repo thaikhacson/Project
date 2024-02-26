@@ -3,17 +3,18 @@
 
 #include "student.hpp"
 #include <list>
+#include <functional>
 
-
-void addStudent(list<Student>& database);
-void editStudent(list<Student>& database);
-void deleteStudent(list<Student>& database);
-void searchStudent(list<Student>& database);
-void sortStudent(list<Student>& database);
+void addStudent();
+void editStudent();
+void deleteStudent();
+void searchStudent();
+void sortByStudentName();
+void sortByStudentID();
 void printTableHeader();
-void printbyName(list<Student>& database, string name);
-void printbyID(list<Student>& database, int ID);
-void display(list<Student>& database);
-// void saveFile();
+void printbyName(std::string name);
+void printbyID(int ID);
+void display();
+void saveFile();
 
 #endif

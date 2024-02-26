@@ -2,6 +2,7 @@
 #include "student_operator.hpp"
 
 
+
 int main() {
 
 	extern list<Student> database;
@@ -25,30 +26,107 @@ int main() {
 		switch (choice)
 		{
 		case 1:
-			//addStudent(database);
+			cout << "-----ADD STUDENT-----" << endl;
+			addStudent();
 			break;
 
 		case 2:
-			//editStudent(database);
+			cout << "-----EDIT STUDENT-----" << endl;
+			editStudent();
 			break;
 
 		case 3:
-			//deleteStudent(database);
+			cout << "-----DELETE STUDENT-----" << endl;
+			deleteStudent();
 			break;
 
 		case 4:
-			//searchStudent(database);
+			cout << "-----SEARCH STUDENT-----" << endl;
+			searchStudent();
 			break;
 
 		case 5:
+			cout << "-----ARRANGE STUDENT-----" << endl;
+			int arrangeInput;
+			do
+			{
+				cout << "1. Arrange Student by Name" << endl;
+				cout << "2. Arrange Student by ID" << endl;
+				cout << "3. Exit" << endl;
+				cout << "Enter your choice: ";
+				cin >> arrangeInput;
+
+				switch (arrangeInput) {
+				case 1:
+					sortByStudentName();
+					break;
+				case 2:
+					sortByStudentID();
+					break;
+				case 3:
+					break;
+				default:
+					break;
+				}
+			} while (arrangeInput != 3);
 
 		case 6:
-			//display(database);
+			cout << "-----PRINT OUT THE STUDENT LIST-----" << endl;
+			int printInput;
+			do
+			{
+				cout << "1. Print out the Student list by Name" << endl;
+				cout << "2. Print out the Student list by ID" << endl;
+				cout << "3. Print the entire list" << endl;
+				cout << "4. Exit" << endl;
+				cout << "Enter your choice: ";
+				cin >> printInput;
+
+				switch (printInput)
+				{
+				case 1: {
+					string name;
+					cout << "Enter the Name you want to print" << endl;
+					getline(cin, name);
+					printbyName(name);
+					break;
+				}
+				
+				case 2: {
+					int ID;
+					cout << "Enter the ID you want to print" << endl;
+					cin >> ID;
+					printbyID(ID);
+					break;
+				}
+				
+				case 3:
+					display();
+					break;
+
+				case 4:
+					break;
+
+				default:
+					printf("Invalid choice. Please enter a valid option.\n");
+					break;
+				}
+			} while (printInput != 4);
+			break;
+
 		case 7:
+			cout << "-----SAVE TO FILE-----" << endl;
+			saveFile();
+			break;
+
+		case 8:
+			break;
 
 		default:
-			return 0;
+			printf("Invalid choice. Please enter a valid option.\n");
 			break;
 		}
-	} while (true);
+	} while (choice != 8);
+
+	return 0;
 }

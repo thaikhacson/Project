@@ -1,9 +1,22 @@
 #include "student_operator.hpp"
 #include <iomanip>
+#include <algorithm>
+#include <fstream>
 
-list<Student> database;
+extern list<Student> database;
 
-void addStudent(list<Student>& database) {
+/*
+ * Function: addStudent
+ * Description: Add a new student to the list of students.
+ * Input:
+ *   - Prompt the user to enter information such as name, age, gender, math score, physics score, and chemistry score.
+ *   - Validate input for age, gender, and scores.
+ * Output:
+ *   - Add a new student to the list with the provided information.
+ *   - Display a success message after each successful addition.
+ *   - Allow the user to add more students or exit the process.
+ */
+void addStudent() {
 	string name;
 	int age;
 	Gender gender;
@@ -86,8 +99,16 @@ void addStudent(list<Student>& database) {
 	} while (input == 1);
 }
 
-
-void editStudent(list<Student>& database) {
+/*
+ * Function: editStudent
+ * Description: Edit student information based on the given name and ID.
+ * Input:
+ *   - None
+ * Output:
+ *   - Modifies the student's information in the database.
+ *   - Displays a message indicating success or failure.
+ */
+void editStudent() {
 	string name;
 	int age;
 	Gender gender;
@@ -100,7 +121,7 @@ void editStudent(list<Student>& database) {
 		getline(cin, name);
 
 		// Print students with the entered name
-		printbyName(database, name);
+		printbyName(name);
 
 		int ID;
 		cout << "Enter the ID of the student you want to edit: ";
@@ -164,9 +185,16 @@ void editStudent(list<Student>& database) {
 	} while (input == 1);
 }
 
-
-
-void deleteStudent(list<Student>& database) {
+/*
+ * Function: deleteStudent
+ * Description: Delete a student by name or ID.
+ * Input:
+ *   - None
+ * Output:
+ *   - Deletes the student information from the database.
+ *   - Displays a message indicating success or failure.
+ */
+void deleteStudent() {
 	int input;
 
 	do
@@ -177,7 +205,7 @@ void deleteStudent(list<Student>& database) {
 		getline(cin, name);
 
 		// Print students with the entered name
-		printbyName(database, name);
+		printbyName(name);
 
 		int ID;
 		cout << "Enter the ID of the student you want to delete: ";
@@ -205,8 +233,15 @@ void deleteStudent(list<Student>& database) {
 	} while (input == 1);
 }
 
-
-void searchStudent(list<Student>& database) {
+/*
+ * Function: searchStudent
+ * Description: Search for a student by name or ID.
+ * Input:
+ *   - None
+ * Output:
+ *   - Displays the found student information or a message indicating that the student was not found.
+ */
+void searchStudent() {
 	string name;
 	int ID;
 	int input1;
@@ -232,7 +267,7 @@ void searchStudent(list<Student>& database) {
 			for (auto it = database.begin(); it != database.end(); it++) {
 				if (it->getName() == name) {
 					found = true;
-					printbyName(database, name);
+					printbyName(name);
 				}
 			}
 
@@ -253,7 +288,7 @@ void searchStudent(list<Student>& database) {
 			for (auto it = database.begin(); it != database.end(); it++) {
 				if (it->getID() == ID) {
 					found = true;
-					printbyID(database, ID);
+					printbyID(ID);
 				}
 			}
 
@@ -270,7 +305,67 @@ void searchStudent(list<Student>& database) {
 	} while (input1 != 1 && input1 != 2 && input1 != 3);
 }
 
+/*
+ * Function: compareName
+ * Description: Compare the last part of two names.
+ * Input:
+ *   - a: First name to compare.
+ *   - b: Second name to compare.
+ * Output:
+ *   - Returns true if the last part of name a is less than the last part of name b.
+ */
+bool compareName(const string& a, const string& b) {
+	size_t posA = a.find_last_of(' ');
+	size_t posB = b.find_last_of(' ');
 
+	if (posA != string::npos && posB != string::npos) {
+		return a.substr(posA + 1) < b.substr(posB + 1);
+	}
+
+	return a < b; // Sort by the entire name if no space is found
+}
+
+/*
+ * Function: sortByStudentID
+ * Description: Sort the student list by ID.
+ * Output:
+ *   - Display a message indicating that the student list has been sorted by ID.
+ *   - Display the sorted student list using the display function.
+ */
+void sortByStudentID() {
+	// Sort the student list by ID
+	database.sort([](Student& a, Student& b) {
+		return a.getID() < b.getID();
+		});
+
+	cout << "\nStudent list sorted by ID." << endl;
+	display();
+}
+
+/*
+ * Function: sortByStudentName
+ * Description: Sort the student list based on the last part of the name.
+ *   - Utilizes the compareName function for sorting.
+ * Output:
+ *   - Display a message indicating that the student list has been sorted by Name.
+ *   - Display the sorted student list using the display function.
+ */
+void sortByStudentName() {
+	// Sort the student list based on the last part of the name
+	database.sort([](Student& a, Student& b) {
+		return compareName(a.getName(), b.getName());
+		});
+
+	cout << "\nStudent list sorted by Name." << endl;
+	display();
+}
+
+/*
+ * Function: printTableHeader
+ * Description: Display the header of the table with columns: ID, Name, Gender, Average Score, Classification.
+ * Output:
+ *   - Display the header of the table with proper column widths and separators.
+ */
 void printTableHeader() {
 	cout << left << setw(12) << "ID" << "|";
 	cout << left << setw(10) << "Name" << "|";
@@ -281,7 +376,18 @@ void printTableHeader() {
 	cout << setfill('-') << setw(60) << "-" << setfill(' ') << endl;
 }
 
-void printbyName(list<Student>& database, string name) {
+/*
+ * Function: printbyName
+ * Description: Display the information of students with a specific name.
+ * Input:
+ *   - name: The name of the students to display.
+ *   - Output the table header with columns: ID, Name, Gender, Average Score, Classification.
+ *   - Iterate through each student in the list and display the information of the students with the matching name.
+ * Output:
+ *   - Display the information of students with the specified name.
+ *   - If no student is found with the given name, display an error message.
+ */
+void printbyName(string name) {
 	bool found = false;
 
 	printTableHeader();
@@ -293,7 +399,25 @@ void printbyName(list<Student>& database, string name) {
 			cout << left << setw(10) << it.getName() << "|";
 			cout << left << setw(12) << it.getGender() << "|";
 			cout << left << setw(16) << it.getAverage() << "|";
-			cout << left << it.getRank() << endl;
+
+			// Map rank enum to corresponding strings
+			string rankStr;
+			switch (it.getRank()) {
+			case 0:
+				rankStr = "Excellent";
+				break;
+			case 1:
+				rankStr = "Good";
+				break;
+			case 2:
+				rankStr = "Average";
+				break;
+			case 3:
+				rankStr = "Poor";
+				break;
+			}
+
+			cout << left << rankStr << endl;
 		}
 	}
 
@@ -302,8 +426,18 @@ void printbyName(list<Student>& database, string name) {
 	}
 }
 
-
-void printbyID(list<Student>& database, int ID) {
+/*
+ * Function: printbyID
+ * Description: Display the information of a student with a specific ID.
+ * Input:
+ *   - ID: The ID of the student to display.
+ *   - Output the table header with columns: ID, Name, Gender, Average Score, Classification.
+ *   - Iterate through each student in the list and display the information of the student with the matching ID.
+ * Output:
+ *   - Display the information of the student with the specified ID.
+ *   - If no student is found with the given ID, display an error message.
+ */
+void printbyID(int ID) {
 	bool found = false;
 
 	printTableHeader();
@@ -315,7 +449,25 @@ void printbyID(list<Student>& database, int ID) {
 			cout << left << setw(10) << it.getName() << "|";
 			cout << left << setw(12) << it.getGender() << "|";
 			cout << left << setw(16) << it.getAverage() << "|";
-			cout << left << it.getRank() << endl;
+
+			// Map rank enum to corresponding strings
+			string rankStr;
+			switch (it.getRank()) {
+			case 0:
+				rankStr = "Excellent";
+				break;
+			case 1:
+				rankStr = "Good";
+				break;
+			case 2:
+				rankStr = "Average";
+				break;
+			case 3:
+				rankStr = "Poor";
+				break;
+			}
+
+			cout << left << rankStr << endl;
 		}
 	}
 
@@ -324,8 +476,16 @@ void printbyID(list<Student>& database, int ID) {
 	}
 }
 
-
-void display(list<Student> database) {
+/*
+ * Function: display
+ * Description: Display the information of all students in the list.
+ * Input:
+ *   - Output the table header with columns: ID, Name, Gender, Average Score, Classification.
+ *   - Iterate through each student in the list and display their information in a formatted table.
+ * Output:
+ *   - Display the information of all students in the list.
+ */
+void display() {
 	printTableHeader();
 
 	for (auto it : database) {
@@ -333,6 +493,65 @@ void display(list<Student> database) {
 		cout << left << setw(10) << it.getName() << "|";
 		cout << left << setw(12) << it.getGender() << "|";
 		cout << left << setw(16) << it.getAverage() << "|";
-		cout << left << it.getRank() << endl;
+
+		// Map rank enum to corresponding strings
+		string rankStr;
+		switch (it.getRank()) {
+		case 0:
+			rankStr = "Excellent";
+			break;
+		case 1:
+			rankStr = "Good";
+			break;
+		case 2:
+			rankStr = "Average";
+			break;
+		case 3:
+			rankStr = "Poor";
+			break;
+		}
+
+		cout << left << rankStr << endl;
 	}
+}
+
+/*
+ * Function: saveFile
+ * Description: Save the student data from the list to a CSV file.
+ * Input:
+ *   - Open a CSV file for writing and check if it is opened successfully.
+ *   - Write the header of the CSV file with columns: ID, Name, Age, Gender, Math Score, Physics Score, Chemistry Score.
+ *   - Iterate through each student in the list and write their information to the file.
+ *   - Close the file after writing.
+ * Output:
+ *   - Display a success message after saving the data to the 'database_sv.csv' file.
+ */
+void saveFile() {
+	// Open the CSV file for writing
+	ofstream outputFile("database_sv.csv");
+
+	// Check if the file is opened successfully
+	if (!outputFile.is_open()) {
+		cout << "Error: Unable to open file for writing." << endl;
+		return;
+	}
+
+	// Write the header of the CSV file
+	outputFile << "ID,Name,Age,Gender,Math Score,Physics Score,Chemistry Score" << endl;
+
+	// Write the data of each student to the file
+	for (auto& Student : database) {
+		outputFile << Student.getID() << ","
+			<< Student.getName() << ","
+			<< Student.getAge() << ","
+			<< (Student.getGender() == MALE ? "Male" : "Female") << ","
+			<< Student.getMathScore() << ","
+			<< Student.getPhysicsScore() << ","
+			<< Student.getChemistryScore() << endl;
+	}
+
+	// Close the file after writing
+	outputFile.close();
+
+	cout << "Data saved to 'database_sv.csv'." << endl;
 }
