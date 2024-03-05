@@ -10,6 +10,7 @@
       <TargetName>Target 1</TargetName>
       <ToolsetNumber>0x4</ToolsetNumber>
       <ToolsetName>ARM-ADS</ToolsetName>
+      <pCCUsed>6190000::V6.19::ARMCLANG</pCCUsed>
       <uAC6>1</uAC6>
       <TargetOption>
         <TargetCommonOption>
@@ -339,7 +340,7 @@
               <MiscControls></MiscControls>
               <Define></Define>
               <Undefine></Undefine>
-              <IncludePath>..\RFID</IncludePath>
+              <IncludePath>.\Src;.\Inc;..\..\..\STM32_SPI_SDCARD-master\STM32_SPI_SDCARD-master - Copy\STM32F4_HAL_SPI_SDCARD\Src;..\..\..\STM32_SPI_SDCARD-master\STM32_SPI_SDCARD-master - Copy\STM32F4_HAL_SPI_SDCARD\Inc</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -388,65 +389,60 @@
               <FileType>1</FileType>
               <FilePath>.\main.c</FilePath>
             </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>SPI</GroupName>
-          <Files>
-            <File>
-              <FileName>SPI.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\Library\SPI\Src\SPI.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>RFID</GroupName>
-          <Files>
             <File>
               <FileName>RFID.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\Library\RFID\Src\RFID.c</FilePath>
+              <FilePath>.\Src\RFID.c</FilePath>
+            </File>
+            <File>
+              <FileName>SPI.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Src\SPI.c</FilePath>
+            </File>
+            <File>
+              <FileName>delay.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Src\delay.c</FilePath>
             </File>
           </Files>
         </Group>
         <Group>
-          <GroupName>SD Card</GroupName>
+          <GroupName>fatfs</GroupName>
           <Files>
             <File>
               <FileName>fatfs.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\Library\SD CARD\Src\fatfs.c</FilePath>
+              <FilePath>..\..\..\STM32_SPI_SDCARD-master\STM32_SPI_SDCARD-master - Copy\STM32F4_HAL_SPI_SDCARD\Src\fatfs.c</FilePath>
             </File>
             <File>
               <FileName>fatfs_sd.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\Library\SD CARD\Src\fatfs_sd.c</FilePath>
+              <FilePath>..\..\..\STM32_SPI_SDCARD-master\STM32_SPI_SDCARD-master - Copy\STM32F4_HAL_SPI_SDCARD\Src\fatfs_sd.c</FilePath>
             </File>
             <File>
               <FileName>stm32f4xx_hal_msp.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\Library\SD CARD\Src\stm32f4xx_hal_msp.c</FilePath>
+              <FilePath>..\..\..\STM32_SPI_SDCARD-master\STM32_SPI_SDCARD-master - Copy\STM32F4_HAL_SPI_SDCARD\Src\stm32f4xx_hal_msp.c</FilePath>
             </File>
             <File>
               <FileName>stm32f4xx_it.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\Library\SD CARD\Src\stm32f4xx_it.c</FilePath>
+              <FilePath>..\..\..\STM32_SPI_SDCARD-master\STM32_SPI_SDCARD-master - Copy\STM32F4_HAL_SPI_SDCARD\Src\stm32f4xx_it.c</FilePath>
             </File>
             <File>
               <FileName>syscalls.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\Library\SD CARD\Src\syscalls.c</FilePath>
+              <FilePath>..\..\..\STM32_SPI_SDCARD-master\STM32_SPI_SDCARD-master - Copy\STM32F4_HAL_SPI_SDCARD\Src\syscalls.c</FilePath>
             </File>
             <File>
               <FileName>system_stm32f4xx.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\Library\SD CARD\Src\system_stm32f4xx.c</FilePath>
+              <FilePath>..\..\..\STM32_SPI_SDCARD-master\STM32_SPI_SDCARD-master - Copy\STM32F4_HAL_SPI_SDCARD\Src\system_stm32f4xx.c</FilePath>
             </File>
             <File>
               <FileName>user_diskio.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\Library\SD CARD\Src\user_diskio.c</FilePath>
+              <FilePath>..\..\..\STM32_SPI_SDCARD-master\STM32_SPI_SDCARD-master - Copy\STM32F4_HAL_SPI_SDCARD\Src\user_diskio.c</FilePath>
             </File>
           </Files>
         </Group>
